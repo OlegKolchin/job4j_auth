@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
 
@@ -23,6 +24,11 @@ public class Job4jAuthApplication extends SpringBootServletInitializer {
         liquibase.setChangeLog("classpath:liquibase-changeLog.xml");
         liquibase.setDataSource(ds);
         return liquibase;
+    }
+
+    @Bean
+    public RestTemplate getTemplate() {
+        return new RestTemplate();
     }
 
     public static void main(String[] args) {
