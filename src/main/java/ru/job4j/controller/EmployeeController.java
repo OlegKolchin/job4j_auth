@@ -16,18 +16,20 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
+    private static final String API = "http://localhost:8080/person/";
+
+    private static final String API_ID = "http://localhost:8080/person/{id}";
+
     private final EmployeeRepository employees;
+
+    @Autowired
+    private RestTemplate rest;
 
     public EmployeeController(final EmployeeRepository employees) {
         this.employees = employees;
     }
 
-    @Autowired
-    private RestTemplate rest;
 
-    private static final String API = "http://localhost:8080/person/";
-
-    private static final String API_ID = "http://localhost:8080/person/{id}";
 
     @GetMapping("/")
     public List<Employee> findAll() {
